@@ -1,0 +1,216 @@
+/*在这里配置首页的css*/
+body{
+    background: url("../img/polo-bg.png") repeat-x;
+    /*height: 3000px;*/
+}
+/*解决高度塌陷的clearfix*/
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/*设置宽度和居中的类*/
+.w{
+    width: 940px;
+    margin: 0 auto;
+}
+.header{
+    /*padding-top: 37px;*/
+    /*padding-bottom: 46px;*/
+    padding: 37px 0 46px 0;
+}
+.logo{
+    margin-left: 15px;
+}
+.nav{
+    float: right;
+    margin-top: 22px;
+}
+.nav li{
+    float: left;
+    border-left: 1px dotted #d6d6d6;
+    padding: 0 10px 8px;
+}
+.nav a{
+    font: bold 14px Georgia;
+    color: #666;
+    text-decoration: none;
+}
+.nav a:hover{
+    color: #a1a1a1;
+    text-decoration: underline;
+}
+.nav p{
+    font: 11px Tahoma;
+    color: #b7b7b7;
+}
+/*设置banner的阴影效果*/
+.banner{
+    padding-bottom: 6px;
+}
+/*测试高度塌陷问题*/
+/*.content{*/
+    /*background: #F00;*/
+/*}*/
+.content h1{
+    text-align: center;
+    font: bold 24px Georgia;
+    padding: 6px 0 12px;
+    background: url("../img/h1-bg.png") no-repeat bottom center;
+    margin-bottom: 38px;
+}
+.content .pl, .content .cs, .content .uc,
+.contact .sc, .contact .co, .contact .nu{
+    /*background: #bfa;*/
+    float: left;
+    width: 300px;
+    /*height: 100px;*/
+}
+.content .cs, .contact .co{
+    margin: 0 20px;
+}
+.content h2{
+    font: 21px Geogria;
+    color: #11719e;
+}
+.content p{
+    color: #8c8c8c;
+    font: 12px Helvetica;
+}
+.content .imgDiv{
+    width: 299px;
+    height: 190px;
+    background: lightgray;
+    margin: 16px 0 10px;
+    text-align: center;
+    padding-top: 12px;
+}
+.content .p2{
+    color: #3e3e3e;
+    /*高度写死*/
+    height: 92px;
+    font: 13px Helvetica;
+    /*word-spacing: 1px;*/
+}
+.content .lm{
+    display: block;
+    width: 163px;
+    height: 40px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: silver no-repeat;
+    text-decoration: none;
+    color: #016999;
+    /*设置与高度等高的行高可以垂直居中*/
+    font: 12px/40px Helvetica;
+    text-indent: 1em;
+    margin-bottom: 30px;
+}
+/*.contact .sc, .contact .co, .contact .nu{*/
+    /*!*background: yellow;*!*/
+    /*height: 300px;*/
+/*}*/
+.contact h2{
+    color: #444;
+    font: 18px/1 Georgia;
+    border-bottom: #d3d3d3 1px dashed;
+    padding: 42px 0 10px;
+    margin-bottom: 15px;
+}
+.contact .txt{
+    width: 276px;
+    height: 33px;
+    line-height: 33px;
+    background: url("../img/input-bg.jpg") no-repeat;
+    /*仅为IE6提供固定定位*/
+    _background-attachment: fixed;
+    border: none;
+    padding: 0 10px;
+    margin: 0 0 16px;
+}
+.contact .ta{
+    width: 270px;
+    height: 114px;
+    /*border: none;*/
+    overflow: auto;
+    resize: none;
+    /*清除默认边距*/
+    margin: 0;
+    padding: 10px;
+}
+.contact .btn{
+    height: 32px;
+    width: 163px;
+    background: url("../img/btn-bg.jpg") no-repeat;
+    border: none;
+    margin: 11px 0 23px ;
+    padding: 0;
+    /*仅为IE6提供固定定位*/
+    _background-attachment: fixed;
+    /*设置鼠标指针样式*/
+    cursor: pointer;
+}
+.contact{
+    background: url("../img/h1-bg.png") no-repeat top center;
+}
+.sc .p1{
+    color: #444;
+    font: 12px/1 Helvetica;
+}
+.sc .icon{
+    font: 0 Serif;
+    margin-top: 4px;
+}
+.sc .icon a{
+    margin-right: 10px;
+}
+.sc .nl{
+    border-bottom: 1px dashed #d3d3d3;
+    font: bold 18px/1 "gill sans mt";
+    padding: 34px 0 10px;
+    /*margin-bottom: 7px;*/
+}
+.sc .txt{
+    margin: 23px 0 0 0;
+}
+.nu img{
+    float: left;
+    margin-right: 8px;
+}
+.nu p{
+    color: #444;
+    height: 58px;
+    font: 12px/1 helvetica ;
+    border-bottom: 1px dashed #d3d3d3;
+    padding: 0 0 9px;
+    margin: 0 0 15px;
+}
+.nu .no-margin{
+    margin-bottom: 0;
+}
+.footer{
+    height: 173px;
+    background: #333333;
+    border-top: 10px solid #4c4c4c;
+}
+.footer p{
+    margin-bottom: 6px;
+}
+.footer a, .footer p{
+    color: #999;
+    font: 11px/1 Helvetica;
+    text-decoration: none;
+}
+.footer a:hover{
+    color: #FFF;
+    text-decoration: underline;
+}
+.footer .w{
+    padding: 18px 23px 0px 8px;
+}
+.footer .pp{
+    float: right;
+    /*处理IE6的双倍边距BUG*/
+    display: inline;
+}

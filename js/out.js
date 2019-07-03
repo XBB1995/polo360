@@ -1,9 +1,12 @@
-var d = new Date();
-var time = Date.now();
-console.log(time);
-
-var end = Date.now();
-console.log(end-time);
-
-var m = Math.floor(-1).toString();
-console.log(m);
+// var reg;
+// var str = "aaa1bbbb22adcd3ddd";
+// // var result = str.match(/[0-9]+/g);
+// // var result = str.split(/[0-9]{2}/);
+// var result = str.replace(/[^A-z]*/g, "#");
+// console.log(result);
+// var str = "13120172332";
+// reg = /^1[^012][0-9]{9}$/;
+// console.log(reg.test(str));
+var str = "cs358.118.276@ncepu.edu.cn";
+reg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+console.log(reg.test(str));

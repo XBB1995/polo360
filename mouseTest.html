@@ -11,31 +11,74 @@
                 //解决兼容性
                 //event = event?event:window.event;
                 event = event || window.event;
+                // event.attachEvent;
 
                 var x = event.clientX;
                 var y = event.clientY;
                 // lg("X = " + x + ", Y = " + y);
                 d2.innerHTML = "X = "+x+", Y = "+y;
             }
-            document.onmousemove = function (event) {
+            //滚轮事件
+            d1.onmousewheel = function(event) {
                 event = event || window.event;
-                //相对于页面的坐标 IE8不支持
-                // var left = event.pageX;
-                // var top = event.pageY;
+                var wd = event.wheelDelta;
+                if (event.wheelDelta>0 || event.detail<0) {
+                    d1.style.height = d1.clientHeight-10+"px";
+                } else {
+                    d1.style.height = d1.clientHeight+10+"px";
+                }
+                return false;
+            };
+            d1.onmousedown = function(event) {
+                //
+                // d1.setCapture && d1.setCapture();
+                event = event || window.event;
                 var left1 = event.clientX;
                 var top1 = event.clientY;
-                //全部统一用documentElement
-                var st = document.documentElement.scrollTop;
-                var sl = document.documentElement.scrollLeft;
+                var offLeft = left1 - d1.offsetLeft;
+                var offTop = top1 - d1.offsetTop;
+                document.onmousemove = function (event) {
+                    //相对于页面的坐标 IE8不支持
+                    // var left = event.pageX;
+                    // var top = event.pageY;
+                    left1 = event.clientX;
+                    top1 = event.clientY;
+                    //全部统一用documentElement
+                    // var st = document.documentElement.scrollTop;
+                    // var sl = document.documentElement.scrollLeft;
 
-                //设置位置
-                // d1.style.position = "absolute";
-                d1.style.left = left1 +sl + "px";
-                d1.style.top = top1 +st + "px";
-            }
+                    //设置位置
+                    // d1.style.position = "absolute";
+                    // d1.style.left = left1+sl-offLeft+"px";
+                    // d1.style.top = top1+st-offTop+"px";
+                    d1.style.left = left1-offLeft+"px";
+                    d1.style.top = top1-offTop+"px";
+                };
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                return false;
+            };
+            bind(d2, "click", function () {
+                alert(this);
+            });
         };
         function lg(str) {
             console.log(str);
+        }
+        //
+        function bind(obj, eventStr, callback) {
+            if (obj.addEventListener) {
+                obj.addEventListener(eventStr, callback, false);
+            } else {
+                // obj.attachEvent("on"+eventStr, callback);
+                //解决this问题
+                obj.attachEvent("on"+eventStr, function () {
+                    callback.call(obj);
+                    // 使用call()实现把this指向obj
+                })
+            }
         }
     </script>
     <style type="text/css">
@@ -46,15 +89,16 @@
         div#d1 {
             width: 400px;
             height: 200px;
-            margin: 0 auto;
+            /*margin: 0 auto;*/
             border: 2px solid red;
             position: absolute;
+            background: #bfa;
         }
-        div#d2 {
-            width: 400px;
-            margin: 0 auto;
-            border: 2px solid red;
-        }
+        /*div#d2 {*/
+            /*width: 400px;*/
+            /*margin: 0 auto;*/
+            /*border: 2px solid red;*/
+        /*}*/
         /*解决高度塌陷问题*/
         .clearfix:after {
             content: '';
@@ -63,7 +107,8 @@
         }
     </style>
 </head>
-<body style="width: 2000px;height: 2000px;">
+<body style="height: 2000px;">
+<!--<body style="">-->
 <div id="d1" class="clearfix">
 
 </div>

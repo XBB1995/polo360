@@ -7,8 +7,20 @@
     <!--<link rel="stylesheet" type="text/css" href="css/page-index.css">-->
     <script type="text/javascript">
         window.onload = function () {
+
+            // var func = function () {
+            //
+            // };
+            // var fun  = new Function();
+            // function func1() {
+            //
+            // }
             var allcb = document.getElementById("allCheckedBox");
             var items = document.getElementsByName("items");
+            var div = document.querySelectorAll("div .f1 label");
+            var f = document.getElementById("f");
+            console.log(div[0].innerHTML);
+            // var all = document.all;
             //全选按钮实现
             var btnAS = document.getElementById("btnAllSelect");
             btnAS.onclick = function () {
@@ -64,28 +76,50 @@
                     }
                 }
             }
-
-
+            //增加运动按钮实现
+            var insertBall = document.getElementById("ball01");
+            var btnAdd = document.getElementById("btnAdd");
+            var ballList = ["篮球","足球","羽毛球","乒乓球"];
+            btnAdd.onclick = function () {
+                var newAdd = document.getElementById("newAdd").value;
+                var newText = document.createTextNode(newAdd);
+                // alert(newText.nodeValue);
+                if (newAdd&&ballList.indexOf(newText.nodeValue) === -1) {
+                    //设置checkbox属性
+                    var cb = document.createElement("input");
+                    cb.type = "checkbox";
+                    cb.name = "items";
+                    cb.value = newText.nodeValue;
+                    //将新加入的球类放入数组中
+                    ballList.push(newText.nodeValue);
+                    // alert(ballList);
+                    // f.appendChild(cb);
+                    // f.appendChild(newText);
+                    f.insertBefore(newText, insertBall);
+                    f.insertBefore(cb, newText);
+                }
+            }
         };
 
     </script>
 </head>
 
 <body>
-<div style="background: #bfa;width: 400px;height: 400px;margin: 50px auto;">
-    <form method="post" action="">
-        你爱好的运动是？<input type="checkbox" id="allCheckedBox">全选/全不选<br/><br/>
-        <input type="checkbox" name="items" value="篮球">篮球
-        <input type="checkbox" name="items" value="足球">足球
-        <input type="checkbox" name="items" value="羽毛球">羽毛球
-        <input type="checkbox" name="items" value="乒乓球">乒乓球
+<div style="background: #bfa;width: 400px;height: 400px;margin: 50px auto;padding: 20px">
+    <form method="post" action="" class="f1" id="f">
+        <label>你爱好的运动是？</label><input type="checkbox" id="allCheckedBox">全选/全不选<br/><br/>
+        <input id="ball01" type="checkbox" name="items" value="篮球">篮球<br/>
+        <input type="checkbox" name="items" value="足球">足球<br/>
+        <input type="checkbox" name="items" value="羽毛球">羽毛球<br/>
+        <input type="checkbox" name="items" value="乒乓球">乒乓球<br/>
     <br/>
         <input type="button" value="全选" id="btnAllSelect">
         <input type="button" value="全不选" id="btnAllNotSelect">
         <input type="button" value="反选" id="btnRevSelect">
         <input type="button" value="提交" id="submit">
-
     </form>
+    <input id="newAdd" type="text" value="" placeholder="添加运动">
+    <button id="btnAdd">增加一种运动</button>
 </div>
 
 </body>

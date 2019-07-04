@@ -85,11 +85,12 @@
                 var newText = document.createTextNode(newAdd);
                 // alert(newText.nodeValue);
                 if (newAdd&&ballList.indexOf(newText.nodeValue) === -1) {
-                    //设置checkbox属性
                     var cb = document.createElement("input");
                     cb.type = "checkbox";
                     cb.name = "items";
                     cb.value = newText.nodeValue;
+                    //设置checkbox属性
+                    var flag = confirm("确认添加"+cb.value+"吗？");
                     //将新加入的球类放入数组中
                     ballList.push(newText.nodeValue);
                     // alert(ballList);
@@ -99,13 +100,50 @@
                     f.insertBefore(cb, newText);
                 }
             }
-        };
+            //背景样式改变实现
+            var btn = document.getElementById("btn");
+            var div1 = document.getElementById("div1");
+            btn.onclick = function () {
+                // var rand1 = Math.round(Math.random()*9);
+                // var rand2 = Math.round(Math.random()*9);
+                // var rand3 = Math.round(Math.random()*9);
+                // div1.style.backgroundColor = "#f"+rand1+"a"+rand2+"e"+rand3;
+                // div1.style.border = "2px solid green";
+                //仅ie浏览器生效
+                // console.log(div1.currentStyle.backgroundColor);
+                // console.log(getComputedStyle(div1, null).backgroundColor);
+                // console.log(getComputedStyle(div1, null).width);
+                // console.log(getStyle(div1, "width"));
+                //不包括边框
+                div1.clientHeight;
+                lg(div1.clientWidth);
+                //包括边框
+                div1.offsetHeight;
+                lg(div1.offsetWidth);
 
+            }
+        };
+        //便捷打印
+        function lg(content) {
+            console.log(content);
+        }
+        function getStyle(obj, name) {
+            //obj获取样式的对象
+            //name获取的样式名
+            //兼容问题处理
+            // window.n;
+            return window.getComputedStyle?getComputedStyle(obj, null)[name]:obj.currentStyle[name];
+            //普通浏览器方式
+            // return getComputedStyle(obj, null)[name];
+            //IE浏览器方式
+            // return obj.currentStyle[name];
+
+        }
     </script>
 </head>
 
 <body>
-<div style="background: #bfa;width: 400px;height: 400px;margin: 50px auto;padding: 20px">
+<div id="div1" style="background: #bfa;width: 400px;height: 400px;margin: 50px auto;padding: 20px; border: 2px solid red;">
     <form method="post" action="" class="f1" id="f">
         <label>你爱好的运动是？</label><input type="checkbox" id="allCheckedBox">全选/全不选<br/><br/>
         <input id="ball01" type="checkbox" name="items" value="篮球">篮球<br/>
@@ -119,7 +157,8 @@
         <input type="button" value="提交" id="submit">
     </form>
     <input id="newAdd" type="text" value="" placeholder="添加运动">
-    <button id="btnAdd">增加一种运动</button>
+    <button id="btnAdd">增加一种运动</button><br/><br/>
+    <button id="btn" disabled="disabled">修改背景样式</button>
 </div>
 
 </body>

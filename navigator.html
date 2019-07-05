@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NavigatorTest</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            //通过Navigator类型识别浏览器
+            // var ua = navigator.userAgent;
+            // if (/QQBrowser/i.test(ua)) {
+            //     alert("QQ浏览器");
+            // } else if (/MSIE/i.test(ua)){
+            //     alert("IE浏览器");
+            // } else if ("ActiveXObject" in window) {
+            //     alert("IE!");
+            // }
+            //通过History类型前进后退
+            // alert(history.length);
+            //当次访问链接的数量
+            var btn = document.getElementById("btn");
+            // btn.onclick = function() {
+            //     //前进
+            //     // history.forward();
+            //     //后退
+            //     // history.back();
+            //     history.go(1);
+            // };
+            //通过Location类型获取地址栏信息
+            // location.assign("https://www.baidu.com");
+            // location.reload();
+            location.replace("index.html");
+
+        };
+    </script>
+</head>
+<body>
+<div id="div1">
+    <a href="index.html">去index.html</a>
+    <button id="btn">前进--></button>
+</div>
+</body>
+</html>

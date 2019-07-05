@@ -6,6 +6,45 @@
     <script type="text/javascript">
         window.onload = function () {
             var d1 = document.getElementById("d1");
+            var od = document.getElementById("outerdiv");
+            var speed = 10;
+            //开启一个定时器控制速度
+            var dir = 0;
+            setInterval(function () {
+                //子元素无边框时效果较好 父元素允许有边框
+                switch (dir) {
+                    case 37:
+                        if (d1.offsetLeft - speed < 0) {
+                            d1.style.left = 0 +"px";
+                        } else {
+                            d1.style.left = d1.offsetLeft - speed +"px";
+                        }
+                        // console.log(d1.style.left);
+                        break;
+                    case 38:
+                        if (d1.offsetTop - speed < 0) {
+                            d1.style.top = 0 +"px";
+                        } else {
+                            d1.style.top = d1.offsetTop - speed +"px";
+                        }
+                        break;
+                    case 39:
+                        // console.log(d1.offsetLeft);
+                        if (d1.offsetLeft + speed > od.clientWidth - d1.clientWidth) {
+                            d1.style.left = od.clientWidth - d1.clientWidth +"px";
+                        } else {
+                            d1.style.left = d1.offsetLeft + speed +"px";
+                        }
+                        break;
+                    case 40:
+                        if (d1.offsetTop + speed > od.clientHeight - d1.clientHeight) {
+                            d1.style.top = od.clientHeight - d1.clientHeight +"px";
+                        } else {
+                            d1.style.top = d1.offsetTop + speed +"px";
+                        }
+                }
+            }, 30);
+
             document.onkeydown = function (event) {
                 //一直按着某个按键不松手，会持续输入
                 //第一个onkeydown和第二个onkeydown之间的间隔稍微长一些
@@ -23,26 +62,18 @@
                 //38 上
                 //39 右
                 //40 ↓
-                var speed = 10;
+                // var speed = 10;
                 //变速
-                if (event.ctrlKey) speed = 50;
-                switch (event.keyCode) {
-                    case 37:
-                        d1.style.left = d1.offsetLeft - speed +"px";
-                        break;
-                    case 38:
-                        d1.style.top = d1.offsetTop - speed +"px";
-                        break;
-                    case 39:
-                        d1.style.left = d1.offsetLeft + speed +"px";
-                        break;
-                    case 40:
-                        d1.style.top = d1.offsetTop + speed +"px";
+                if (event.ctrlKey) {
+                    speed = 50;
+                } else {
+                    speed = 10;
                 }
+                dir = event.keyCode;
                 return false;
             };
             document.onkeyup = function () {
-
+                dir = 0;
             };
         };
         function lg(str) {
@@ -54,13 +85,24 @@
             margin: 0;
             padding: 0;
         }
+        div#outerdiv {
+            /*overflow:hidden;*/
+            position:relative;
+            /*border: 20px solid black;*/
+            height: 300px;
+            width: 500px;
+            margin: 50px auto;
+            background: #333333;
+        }
         div#d1 {
-            width: 400px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
             /*margin: 0 auto;*/
-            border: 2px solid red;
+            /*border: 5px solid red;*/
             position: absolute;
             background: #bfa;
+            text-align: center;
+            line-height: 100px;
         }
         /*div#d2 {*/
             /*width: 400px;*/
@@ -75,13 +117,13 @@
         }
     </style>
 </head>
-<body style="height: 2000px;">
+<body>
 <!--<body style="">-->
-<div id="d1" class="clearfix">
+<div id="outerdiv" >
+    <div id="d1">Target</div>
 <!--<input type="text" id="t1">-->
 </div>
-<div id="d2" class="clearfix">
-<label>Coordinate: </label>
-</div>
+<!--<div id="d2" class="clearfix">-->
+<!--</div>-->
 </body>
 </html>

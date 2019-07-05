@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PicShow</title>
+    <script>
+        window.onload = function () {
+            var timer = null;
+            var index = 0;
+            var img1 = document.getElementById("img1");
+            var imgArr = ["img/fb.jpg","img/logo.png","img/icon.jpg"];
+            //图片轮播函数
+            function picShow() {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    // if (index>2) index = 0;
+                    img1.src = imgArr[index++ % imgArr.length];
+                },1000);
+            }
+            //开始按钮
+            var btn1 = document.getElementById("btn1");
+            btn1.onclick = picShow;
+            //停止按钮
+            var btn2 = document.getElementById("btn2");
+            btn2.onclick = function () {
+              clearInterval(timer);
+            };
+            //延时调用
+
+
+        };
+    </script>
+</head>
+<body>
+<div style="width: 200px;height: 200px;overflow: hidden;">
+    <img id="img1" src="img/fb.jpg">
+</div>
+<button id="btn1">开始</button>
+<button id="btn2">停止</button>
+</body>
+</html>

@@ -18,6 +18,15 @@
             // alert(history.length);
             //当次访问链接的数量
             var btn = document.getElementById("btn");
+            var span1 = document.getElementById("span1");
+            function addOne() {
+                span1.innerHTML = +span1.innerHTML +1;
+            }
+            var timer = setInterval(addOne, 1000);
+            // timer();
+            btn.onclick = function () {
+                clearInterval(timer);
+            }
             // btn.onclick = function() {
             //     //前进
             //     // history.forward();
@@ -28,7 +37,7 @@
             //通过Location类型获取地址栏信息
             // location.assign("https://www.baidu.com");
             // location.reload();
-            location.replace("index.html");
+            // location.replace("index.html");
 
         };
     </script>
@@ -36,7 +45,8 @@
 <body>
 <div id="div1">
     <a href="index.html">去index.html</a>
-    <button id="btn">前进--></button>
+    <button id="btn">前进--></button><br/>
+    <b><span id="span1">0</span></b>
 </div>
 </body>
 </html>

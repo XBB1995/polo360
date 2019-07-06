@@ -39,30 +39,50 @@
             var allA = document.getElementsByTagName("a");
             allA[index].style.backgroundColor = "#333";
 
+            var timer;
+            autoChange();
+
             for (var i=0;i<allA.length;i++) {
 
                 allA[i].index = i;
                 allA[i].onclick = function () {
+                    clearInterval(timer);
                     index = this.index;
                     imgList.style.left = index * -660 + "px";
                     setA();
+                    autoChange();
                 }
 
             }
             function setA() {
 
-                // if (index>=imgArr.length-1) {
-                //     index = 0;
-                // }
-                // imgList.style.left = 0 +"px";
+                if (index>=imgArr.length-1) {
+                    index = 0;
+                    imgList.style.left = 0 +"px";
+                }
+
                 for (var i=0;i<allA.length;i++) {
                     //空串去除样式
                     allA[i].style.backgroundColor = "";
                 }
                 allA[index].style.backgroundColor = "#333";
             }
+            function move(obj, target, speed, callback) {
+                // console.log("move now!");
+                obj.style[target] = obj.offsetLeft - speed +"px";
+                callback && callback();
+            }
+            function autoChange() {
+                timer = setInterval(function () {
+                    move(imgList, "left",660, function () {
+                        // alert("into move");
+                        index++;
+                        // index = index % 4;
+                        setA();
 
-
+                    });
+                }, 2000);
+            }
 
         };
     </script>
@@ -75,7 +95,7 @@
             width: 660px;
             height: 480px;
             margin: 50px auto;
-            background: #bfa;
+            background: lightgrey;
             padding: 10px 0;
             position: relative;
             overflow: hidden;
@@ -116,13 +136,16 @@
             <img src="img/1.jpg">
         </li>
         <li>
+            <img src="img/2.jpg">
+        </li>
+        <li>
+            <img src="img/3.jpg">
+        </li>
+        <li>
             <img src="img/4.jpg">
         </li>
         <li>
             <img src="img/1.jpg">
-        </li>
-        <li>
-            <img src="img/4.jpg">
         </li>
     </ul>
     <div id="navDiv">

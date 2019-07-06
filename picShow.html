@@ -5,37 +5,134 @@
     <title>PicShow</title>
     <script>
         window.onload = function () {
-            var timer = null;
-            var index = 0;
-            var img1 = document.getElementById("img1");
-            var imgArr = ["img/fb.jpg","img/logo.png","img/icon.jpg"];
-            //图片轮播函数
-            function picShow() {
-                clearInterval(timer);
-                timer = setInterval(function () {
-                    // if (index>2) index = 0;
-                    img1.src = imgArr[index++ % imgArr.length];
-                },1000);
-            }
-            //开始按钮
-            var btn1 = document.getElementById("btn1");
-            btn1.onclick = picShow;
-            //停止按钮
-            var btn2 = document.getElementById("btn2");
-            btn2.onclick = function () {
-              clearInterval(timer);
-            };
+            // var timer = null;
+            // var index = 0;
+            // var img1 = document.getElementById("img1");
+            // var imgArr = ["img/1.jpg","img/2.jpg","img/3.jpeg","img/4.jpg"];
+            //
+            // function picShow() {
+            //     clearInterval(timer);
+            //     timer = setInterval(function () {
+            //         // if (index>2) index = 0;
+            //         img1.src = imgArr[index++ % imgArr.length];
+            //     },1000);
+            // }
+            // //开始按钮
+            // var btn1 = document.getElementById("btn1");
+            // btn1.onclick = picShow;
+            // //停止按钮
+            // var btn2 = document.getElementById("btn2");
+            // btn2.onclick = function () {
+            //   clearInterval(timer);
+            // };
             //延时调用
+            //图片轮播函数
+            var imgList = document.getElementById("imgList");
+            var imgArr = document.getElementsByTagName("img");
+            imgList.style.width = imgArr.length * 660 + "px";
+
+            var navDiv = document.getElementById("navDiv");
+            var outer = document.getElementById("outer");
+            navDiv.style.left = (outer.offsetWidth-navDiv.offsetWidth)/2+"px";
+
+            var index = 0;
+            var allA = document.getElementsByTagName("a");
+            allA[index].style.backgroundColor = "#333";
+
+            for (var i=0;i<allA.length;i++) {
+
+                allA[i].index = i;
+                allA[i].onclick = function () {
+                    index = this.index;
+                    imgList.style.left = index * -660 + "px";
+                    setA();
+                }
+
+            }
+            function setA() {
+
+                // if (index>=imgArr.length-1) {
+                //     index = 0;
+                // }
+                // imgList.style.left = 0 +"px";
+                for (var i=0;i<allA.length;i++) {
+                    //空串去除样式
+                    allA[i].style.backgroundColor = "";
+                }
+                allA[index].style.backgroundColor = "#333";
+            }
+
 
 
         };
     </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer {
+            width: 660px;
+            height: 480px;
+            margin: 50px auto;
+            background: #bfa;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        #imgList {
+            list-style: none;
+            width: 2560px;
+            position: absolute;
+            /*left:-660px;*/
+        }
+        #imgList li{
+            float: left;
+            margin: 0 10px;
+        }
+        #navDiv {
+            position: absolute;
+            bottom: 15px;
+        }
+        #navDiv a{
+            float: left;
+            width: 15px;
+            height: 15px;
+            background: red;
+            margin: 0 5px;
+            opacity: 0.5;
+            //兼容ie8
+            filter: alpha(opacity=50);
+        }
+        #navDiv a:hover{
+            background-color: #333333;
+        }
+    </style>
 </head>
 <body>
-<div style="width: 200px;height: 200px;overflow: hidden;">
-    <img id="img1" src="img/fb.jpg">
+<div id="outer" >
+    <ul id="imgList">
+        <li>
+            <img src="img/1.jpg">
+        </li>
+        <li>
+            <img src="img/4.jpg">
+        </li>
+        <li>
+            <img src="img/1.jpg">
+        </li>
+        <li>
+            <img src="img/4.jpg">
+        </li>
+    </ul>
+    <div id="navDiv">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
 </div>
-<button id="btn1">开始</button>
-<button id="btn2">停止</button>
+<!--<button id="btn1">开始</button>-->
+<!--<button id="btn2">停止</button>-->
 </body>
 </html>
